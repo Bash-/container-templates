@@ -1,0 +1,34 @@
+version: "2"
+services:
+  spark-master:
+    image: bde2020/spark-master:2.4.5-hadoop2.7
+    container_name: spark-master
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    environment:
+      - INIT_DAEMON_STEP=setup_spark
+      - "constraint:node==<yourmasternode>"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./data:/home/jovyan/data
+  spark-worker:
+    image: bde2020/spark-worker:2.4.5-hadoop2.7
+    depends_on:
+      - spark-master
+    environment:
+      - "SPARK_MASTER=spark://spark-master:7077"
+      - "constraint:node==<yourworkernode>"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./data:/home/jovyan/data
+  jupyter-notebook:
+    image: jupyter/pyspark-notebook
+    ports:
+      - "8888:8888"
+    environment:
+      - "PYSPARK_PYTHON=/usr/bin/python3"
+      - "PYSPARK_DRIVER_PYTHON=ipython3"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./data:/home/jovyan/data
