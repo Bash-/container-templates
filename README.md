@@ -1,8 +1,8 @@
 # container-templates
 A collection of useful Docker Compose configuration files, for speeding up tool deployment
 
-## Contents
-### Spark Cluster with PySpark and Jupyter Notebook
+
+## Spark Cluster with PySpark and Jupyter Notebook
 For experimenting with PySpark on a Spark Cluster.
 ##### Deployment
 ```
@@ -19,7 +19,7 @@ sudo docker-compose up --scale spark-worker=[NUMBER_OF_WORKERS]
 ##### Troubleshooting
 Jupyter Notebook does not have write access on local volume (e.g. ./notebooks): ```sudo chmod 777 ./notebooks```
 
-### PostGIS
+## PostGIS
 Postgres database with PostGIS extension for geospatial analysis 
 
 ##### Deployment
