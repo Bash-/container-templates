@@ -10,7 +10,7 @@ services:
       - INIT_DAEMON_STEP=setup_spark
       - "constraint:node==<yourmasternode>"
     volumes:
-      - ./notebooks:/home/jovyan/work
+      - ./notebooks:/home/jovyan/notebooks
       - ./data:/home/jovyan/data
   spark-worker:
     image: bde2020/spark-worker:2.4.5-hadoop2.7
@@ -20,7 +20,7 @@ services:
       - "SPARK_MASTER=spark://spark-master:7077"
       - "constraint:node==<yourworkernode>"
     volumes:
-      - ./notebooks:/home/jovyan/work
+      - ./notebooks:/home/jovyan/notebooks
       - ./data:/home/jovyan/data
   jupyter-notebook:
     image: jupyter/pyspark-notebook
@@ -30,5 +30,5 @@ services:
       - "PYSPARK_PYTHON=/usr/bin/python3"
       - "PYSPARK_DRIVER_PYTHON=ipython3"
     volumes:
-      - ./notebooks:/home/jovyan/work
+      - ./notebooks:/home/jovyan/notebooks
       - ./data:/home/jovyan/data
