@@ -1,6 +1,4 @@
-# container-templates
 A collection of useful Docker Compose configuration files, for speeding up tool deployment
-
 
 ## Spark Cluster with PySpark and Jupyter Notebook
 For experimenting with PySpark on a Spark Cluster.
